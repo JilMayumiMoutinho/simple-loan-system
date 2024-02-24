@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Table*/
 import jakarta.persistence.*
-import me.dio.creditapplication.system.entity.Address
+import java.math.BigDecimal
 
 @Entity //Anotação do jakarta q mostra q será uma entidade ou tabela e seus atfibutos serão colunas
 @Table(name = "Customer")   //Anotação pra infomar o nome da tabela, se não colocar, fica o nome da class
@@ -18,9 +18,10 @@ class Customer (
     @Column(nullable = false) var lastName: String = "",
     @Column(nullable = false, unique = true) val cpf: String = "",
     @Column(nullable = false, unique = true) val email: String = "",
+    @Column(nullable = false) var income: BigDecimal = BigDecimal.ZERO,
     @Column(nullable = false) var password: String = "",
     @Column(nullable = false) @Embedded var address: Address = Address(),
-    //// Inserimos address dentro de customer, assim, não precisa ser uma tabela
+    // Inserimos address dentro de customer, assim, não precisa ser uma tabela
     @Column(nullable = false) @OneToMany(
         fetch = FetchType.LAZY,
         cascade = [CascadeType.REMOVE],
