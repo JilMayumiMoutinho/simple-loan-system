@@ -22,7 +22,8 @@ data class Credit (
     @Column(nullable = false) val numberOfInstallments: Int = 0,
     @Enumerated var status: Status = Status.IN_PROGRESS,
     // Só informando q é um enum
-    @ManyToOne val customer: Customer? = null,
+    @ManyToOne var customer: Customer? = null,
     // Informando q pode haver varios credits para um customer
+    // TODOJIL Não entendi pq é var? Deveria já ser o número não
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null
 )
