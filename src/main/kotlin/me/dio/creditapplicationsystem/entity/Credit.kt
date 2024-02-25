@@ -21,7 +21,8 @@ data class Credit (
     @Column(nullable = false) val dayFirstInstallment: LocalDate,
     @Column(nullable = false) val numberOfInstallments: Int = 0,
     @Enumerated var status: Status = Status.IN_PROGRESS,
-    // Só informando q é um enum
+    //@Enumerated Só informando q é um enum
+    //Se declarar @Enumerated(value = EnumType.STRING), migrations gera como string e não INT
     @ManyToOne var customer: Customer? = null,
     // Informando q pode haver varios credits para um customer
     // TODOJIL Não entendi pq é var? Deveria já ser o número não
