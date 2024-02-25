@@ -12,3 +12,6 @@ CREATE TABLE credit (
 ALTER TABLE credit ADD CONSTRAINT uc_credit_credit_code UNIQUE (credit_code);
 
 ALTER TABLE credit ADD CONSTRAINT FK_CREDIT_ON_CUSTOMER FOREIGN KEY (customer_id) REFERENCES customer (id);
+
+-- Teria q fazer um alter table pro status não ser SMALLINT  e sim string, mas como foi gerado assim
+-- o INT q será adicionado é de acordo com a posição do [] de status (ver aquivo Credit)

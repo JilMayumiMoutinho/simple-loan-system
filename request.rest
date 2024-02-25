@@ -1,1 +1,81 @@
-GET http://localhost:8080/api/customers/1
+POST
+/*
+"firstName": "Mia",
+"lastName": "Miante",
+"cpf": "12313212312",
+"income": 1000.0,
+"email": "mia@mia.com",
+"password": "mia123456",
+"zipCode": "12345-123",
+"street": "Rua 123"
+
+{
+  "firstName": "Gatuno",
+  "lastName": "Gatuninho",
+  "cpf": "57361597084",
+  "income": 2000.0,
+  "email": "gatuno@gatuno.com",
+  "zipCode": "12345-456",
+  "street": "Rua 456"
+}
+*/
+
+UPDATE
+Colocar na url o param
+http://localhost:8080/api/customers?customerId=2
+Passar o body como no dto
+{
+  "firstName": "Gatuno",
+  "lastName": "Amarelo",
+  "income": 2500.0,
+  "zipCode": "12345-678",
+  "street": "Rua do Gatuno"
+}
+
+DELETE
+só colocar o id na url: http://localhost:8080/api/customers/3
+
+POST
+http://localhost:8080/api/credits
+{
+  "creditValue": 500.0,
+  "dayFirstOfInstallment": "2024-03-29",
+  "numberOfInstallments": 5,
+  "customerId": 2
+}
+{
+  "creditValue": 1000.0,
+  "dayFirstOfInstallment": "2024-10-29",
+  "numberOfInstallments": 10,
+  "customerId": 2
+}
+
+GET
+http://localhost:8080/api/credits?customerId=2
+Retorna um []
+ex:
+[
+  {
+    "creditCode": "1bbcf300-a1a0-4227-a23f-f7b2f0440137",
+    "creditValue": 500,
+    "numberOfInstallments": 5
+  },
+  {
+    "creditCode": "285e9265-b704-4ade-869e-d22b0ae65786",
+    "creditValue": 1000,
+    "numberOfInstallments": 10
+  }
+]
+
+GET
+com usuario e creditCode
+http://localhost:8080/api/credits/285e9265-b704-4ade-869e-d22b0ae65786?customerId=2
+Ele tem 2, mas retorna apenas 1 ref ao código q esta no path
+{
+  "creditCode": "285e9265-b704-4ade-869e-d22b0ae65786",
+  "creditValue": 1000,
+  "numberOfInstallment": 10,
+  "status": "IN_PROGRESS",
+  "emailCustomer": "gatuno@gatuno.com",
+  "incomeCustomer": 2500
+}

@@ -36,5 +36,4 @@ class Customer (
     //@Id anot. p mostrar q é a primary key
     //@GeneratedValue Anot. p gerar um valor. após o iuqal, ao colocar q é identity, não gera 2 iguais
     ) {
-
 }

@@ -47,7 +47,7 @@ class CustomerResource(
 
     @PatchMapping
     //update PUT ou PATH,
-    fun upadateCustomer(
+    fun updateCustomer(
         @RequestParam(value = "customerId") id: Long,
         //Anot. outra forma de mostrar no lugar de path. Qd por param não precisa ter {"/id"} como acima
         @RequestBody @Valid customerUpdateDto: CustomerUpdateDto
@@ -57,8 +57,8 @@ class CustomerResource(
         val customerToUpdate: Customer = customerUpdateDto.toEntity(customer)
         val customerUpdated: Customer = this.customerService.save(customerToUpdate)
         return ResponseEntity.status(HttpStatus.OK)
-            //Qd a recuração da sucesso
+            //Qd a recuperação da sucesso
             .body(CustomerView(customerUpdated))
     }
-    //é update pq nçau muda o id q é a primary key
+    //é update pq não muda o id q é a primary key
 }

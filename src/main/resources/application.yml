@@ -5,9 +5,9 @@ spring:
 #    password: 1234
   jpa:
     show-sql: true
-    hibernate:
-      properties:
-        hibernate.format_sql: true
+    #hibernate:
+    properties:
+      hibernate.format_sql: true
 #      ddl-auto: create-drop # update tem todas as ap��es, mas vamos usar o flyway
   h2:
     console:
