@@ -31,6 +31,7 @@ class CreditResource(
     //Para salvar
     fun saveCredit(@RequestBody @Valid creditDto: CreditDto): ResponseEntity<String> {
         //Anot. ResponseEntity informa q sera do tipo res
+        //Anot. Valid informa q tem anotações para validar
         val credit: Credit = this.creditService.save(creditDto.toEntity())
         return ResponseEntity.status(HttpStatus.CREATED)
             //nativo do spring par qd a criação da sucesso
@@ -60,5 +61,3 @@ class CreditResource(
         return ResponseEntity.status(HttpStatus.OK).body(CreditView(credit))
     }
 }
-
-//intelliAPI
