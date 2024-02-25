@@ -14,9 +14,15 @@ class CustomerService(private val customerRepository: CustomerRepository): ICust
     override fun findById(id: Long): Customer =
         this.customerRepository.findById(id).orElseThrow{throw RuntimeException("Client with id: $id not found")}
 
-    override fun delete(id: Long) =
-        this.customerRepository.deleteById(id)
-    //Não retorna nada
+    override fun delete(id: Long) {
+        //this.customerRepository.deleteById(id)
+        //Da forma acima, ele da 200 mesmo q nao exista susuario com o id informado
+        val customer: Customer = this.findById(id)
+        this.customerRepository.delete(customer)
+        //Assim primeiro procura o usuario e depois deleta toda a entidade
+
+        //Não retorna nada
+    }
 }
 
 //Spring não tem função de update, ele sobre-escreve com o save

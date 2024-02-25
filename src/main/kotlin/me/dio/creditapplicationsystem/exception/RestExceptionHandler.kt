@@ -8,11 +8,14 @@ import org.springframework.validation.ObjectError
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
+//Informa pra escutar as exceptions
 import java.time.LocalDateTime
 
 @RestControllerAdvice
 class RestExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException::class)
+    //informa q é uma java class
+    //MethodArgumentNotValidException tem q pegar esse tipo de exception no log de erro ou documentação
     fun handlerValidException(ex: MethodArgumentNotValidException): ResponseEntity<ExceptionDetails> {
         val erros: MutableMap<String, String?> = HashMap()
         ex.bindingResult.allErrors.stream().forEach { erro: ObjectError ->
@@ -24,14 +27,16 @@ class RestExceptionHandler {
             ExceptionDetails(
                 title = "Bad Request! Consult the documentation",
                 timestamp = LocalDateTime.now(),
-                status = HttpStatus.BAD_REQUEST.value(),
+                status = HttpStatus.BAD_REQUEST.value(), //Numero inteiro
                 exception = ex.javaClass.toString(),
-                details = erros
+                details = erros //[] de erros q mapeamos acima
             ), HttpStatus.BAD_REQUEST
         )
     }
 
     @ExceptionHandler(DataAccessException::class)
+    //DataAccessException tem q pegar esse tipo de exception no log de erro ou documentação
+    //diferente do erro da de cima, ela não tem um array de erros
     fun handlerValidException(ex: DataAccessException): ResponseEntity<ExceptionDetails> {
         return ResponseEntity.status(HttpStatus.CONFLICT)
             .body(
@@ -43,7 +48,9 @@ class RestExceptionHandler {
                     details = mutableMapOf(ex.cause.toString() to ex.message)
                 )
             )
-        /*return ResponseEntity(
+        /*
+        mesma doida de outra forma
+        return ResponseEntity(
           ExceptionDetails(
             title = "Bad Request! Consult the documentation",
             timestamp = LocalDateTime.now(),

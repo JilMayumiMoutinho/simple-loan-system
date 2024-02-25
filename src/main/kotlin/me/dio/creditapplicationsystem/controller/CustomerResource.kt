@@ -43,6 +43,7 @@ class CustomerResource(
     @DeleteMapping("/{id}")
     //Anot. delete ou seja, deleta dados, passa entre chaves os parametros q vão na url  ou seja o path
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    //Anot. para dar 204, q não encontrou, mas q não existe no dB como ele queria
     fun deleteCustomer(@PathVariable id: Long) = this.customerService.delete(id)
 
     @PatchMapping
