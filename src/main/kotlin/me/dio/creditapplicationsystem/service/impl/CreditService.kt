@@ -29,7 +29,7 @@ class CreditService(
         val credit: Credit = (this.creditRepository.findByCreditCode(creditCode)
             ?: throw BusinessException("Creditcode $creditCode not found"))
         return if (credit.customer?.id == customerId) credit
-        else throw IllegalArgumentException("This credit code it's not from this customer")
+        else throw IllegalArgumentException("This credit code is not from this customer")
         //IllegalArgumentException já é do java
         /*if (credit.customer?.id == customerId) {
           return credit

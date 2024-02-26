@@ -29,13 +29,16 @@ class CreditResource(
 
     @PostMapping
     //Para salvar
-    fun saveCredit(@RequestBody @Valid creditDto: CreditDto): ResponseEntity<String> {
+    fun saveCredit(@RequestBody @Valid creditDto: CreditDto): ResponseEntity<CreditView> {
         //Anot. ResponseEntity informa q sera do tipo res
         //Anot. Valid informa q tem anotações para validar
-        val credit: Credit = this.creditService.save(creditDto.toEntity())
+        val savedCredit: Credit = this.creditService.save(creditDto.toEntity())
         return ResponseEntity.status(HttpStatus.CREATED)
             //nativo do spring par qd a criação da sucesso
-            .body("Credit ${credit.creditCode} - Customer ${credit.customer?.firstName} saved!")
+            //.body("Credit ${credit.creditCode} - Customer ${credit.customer?.firstName} saved!")
+            //Se fsse voltar a frase acima, o retorno após o nome da função seria ResponseEntity<String>
+            //Pra poder verificar os valores de retorno nos testes, troquei por:
+            .body(CreditView(savedCredit))
     }
 
     @GetMapping

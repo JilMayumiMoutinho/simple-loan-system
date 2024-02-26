@@ -1,6 +1,7 @@
 package me.dio.creditapplicationsystem.service.impl
 
 import me.dio.creditapplicationsystem.entity.Customer
+import me.dio.creditapplicationsystem.exception.BusinessException
 import me.dio.creditapplicationsystem.repository.CustomerRepository
 import me.dio.creditapplicationsystem.service.ICustomerService
 import org.springframework.stereotype.Service
@@ -12,8 +13,9 @@ class CustomerService(private val customerRepository: CustomerRepository): ICust
         this.customerRepository.save(customer)
 
     override fun findById(id: Long): Customer =
-        this.customerRepository.findById(id).orElseThrow{throw RuntimeException("Client with id: $id not found")}
-
+        //this.customerRepository.findById(id).orElseThrow{throw RuntimeException("Client with id: $id not found")}
+        //Personalizndo o erro
+        this.customerRepository.findById(id).orElseThrow{throw BusinessException("Client with id: $id not found")}
     override fun delete(id: Long) {
         //this.customerRepository.deleteById(id)
         //Da forma acima, ele da 200 mesmo q nao exista susuario com o id informado
@@ -27,4 +29,5 @@ class CustomerService(private val customerRepository: CustomerRepository): ICust
 
 //Spring não tem função de update, ele sobre-escreve com o save
 //REPO: conexão com banco de dados
+//service: cama de regra de negócio
 //ENTITY: classes da tabela do banco de dados
