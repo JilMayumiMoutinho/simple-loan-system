@@ -42,7 +42,8 @@
 Configuração criada com Postman:
 <a href="https://drive.google.com/file/d/1wxwioDHS1sKFPq4G7b24tVZb-XMnoj-l/view?usp=share_link"> 🚀 Collection Sacola API - Postman</a><br>
 Configuração criada com swagger:
-<img src="src/assets/swagger-img.png" alt="Screamshot dos endpoints configurados no site do swagger" width="60%">
+<br>
+<img src="src/assets/swagger-img.png" alt="Screamshot dos endpoints configurados no site do swagger" width="40%">
 
 <hr>
 <h3>Contribuindo</h3>
