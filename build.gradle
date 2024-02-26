@@ -26,13 +26,22 @@ dependencies {
 	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
 	implementation 'org.flywaydb:flyway-core'
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.mockk:mockk:1.13.4'
 }
 
-tasks.withType(KotlinCompile) {
+//Para os testes: adiciona implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2' acima
+//desde de cima, ja tem o J.Unit, o assertJ, o mockito
+//testImplementation 'io.mockk:mockk:1.13.4' acima. mockK
+//asertj.github.io/doc
+//junit.org
+//mockk.io
+
+tasks.withType(KotlinCompile).configureEach {
 	kotlinOptions {
-		freeCompilerArgs += '-Xjsr305=strict'
+		freeCompilerArgs = ['-Xjsr305=strict']
 		jvmTarget = '17'
 	}
 }
